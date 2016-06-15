@@ -1,0 +1,58 @@
+<?php $__env->startSection('content-header'); ?>
+	
+	<h1>
+		All Subscribers (<?php echo $subscribers->count(); ?>)
+	<span style="float:right;width: 24%;">
+		<form role="form" action="<?php echo e(url('/admin/subscribers')); ?>" method="get"><input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">	<div class="form-group"><span style="width: 30%; float: left;">Search:</span><input type=text" value="<?php echo (@$_REQUEST['search']); ?>" name="search" class="form-control" style="height: 26px;    height: 26px;width: 65%;"/></div></form>
+		</span>
+	</h1>
+<div style="clear:both"></div>
+	
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+	<table class="table">
+		<thead>
+			<th>No</th>
+			<th>Email</th>
+			<th>Created At</th>
+			<th class="text-center">Action</th>
+		</thead>
+		<tbody>
+			<?php if($subscribers->count()!=0): ?>
+				<?php foreach($subscribers as $subscriber): ?>
+				
+				<tr>
+					<td><?php echo $no; ?></td>
+					<td><?php echo $subscriber->email; ?></td>
+				
+					<td><?php echo $subscriber->created_at; ?></td>
+					<td class="text-center">
+						<?php echo $__env->make('admin::partials.modal', ['data' => $subscriber, 'name' => 'subscribers'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+					</td>
+				</tr>
+				<?php $no++ ;?>
+				<?php endforeach; ?>
+				<?php else: ?>
+				<tr>
+					<td></td>
+					<td class="text-center">
+							No Record Found.
+					</td>
+					<td></td>
+					<td></td>
+					
+				</tr>
+		
+			<?php endif; ?>
+		</tbody>
+	</table>
+		
+	<div class="text-center">
+		<?php echo pagination_links($subscribers); ?>
+
+	</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make($layout, array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

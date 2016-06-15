@@ -1,0 +1,21 @@
+<?php $__env->startSection('content-header'); ?>
+	<h1>
+		Edit
+		&middot;
+		<?php if(isOnPages()): ?>
+		<small><?php echo link_to_route('admin.pages.index', 'Back'); ?></small>
+		<?php else: ?>
+		<small><?php echo link_to_route('admin.articles.index', 'Back'); ?></small>
+		<?php endif; ?>
+	</h1>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+	<div>
+		<?php echo $__env->make('admin::articles.form', array('model' => $article), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make($layout, array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,19 @@
+<?php $__env->startSection('content-header'); ?>
+	
+	
+	<h1>
+		Add New
+		&middot;
+		<small><?php echo link_to_route('admin.users.index', 'Back'); ?></small>
+	</h1>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<div>
+		<?php echo $__env->make('admin::users.form', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make($layout, array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
